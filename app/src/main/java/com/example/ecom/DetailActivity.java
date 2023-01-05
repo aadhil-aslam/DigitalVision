@@ -55,7 +55,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                     if (FirebaseAuth.getInstance().getCurrentUser()==null){
-                        startActivity(new Intent(DetailActivity.this, DashboardActivity.class));
+                        startActivity(new Intent(DetailActivity.this, SignupActivity.class));
                     } else {
                         showBottomSheet(0);
                     }
@@ -67,7 +67,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (FirebaseAuth.getInstance().getCurrentUser()==null){
-                    startActivity(new Intent(DetailActivity.this, DashboardActivity.class));
+                    startActivity(new Intent(DetailActivity.this, SignupActivity.class));
                 } else {
                     showBottomSheet(1);
                 }

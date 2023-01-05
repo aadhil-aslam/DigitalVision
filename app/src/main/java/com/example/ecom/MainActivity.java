@@ -16,6 +16,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
+
+    boolean validateMail = false;
+    boolean validatePW = false;
+
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +34,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Observer design pattern
         binding.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email=binding.email.getText().toString();
-                String password=binding.password.getText().toString();
-                login(email,password);
+                validateMail = binding.email.getText().toString().trim().equalsIgnoreCase("");
+                validatePW = binding.password.getText().toString().trim().equalsIgnoreCase("");
+
+                if (validateMail) {
+                    binding.email.setError("Email cannot be blank");
+                }
+                else {
+                    binding.email.setError(null);
+                }
+                if (validatePW) {
+                    binding.password.setError("Password cannot be blank");
+                }
+
+                if (!validateMail && !validatePW){
+                    String email=binding.email.getText().toString();
+                    String password=binding.password.getText().toString();
+                    login(email, password);
+                }
             }
         });
     }
@@ -44,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         ProgressDialog progressDialog=new ProgressDialog(this);
-        progressDialog.setTitle("Creating");
-        progressDialog.setMessage("Account");
+        progressDialog.setTitle("Signing in");
+        //progressDialog.setMessage("Account");1
         progressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(email.trim(), password.trim()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -73,11 +93,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (FirebaseAuth.getInstance().getCurrentUser() != null && FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()){
+        if (FirebaseAuth.getInstance().getCurrentUser() != null
+                //&& FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()
+        )
+        {
             startActivity(new Intent(MainActivity.this, DashboardActivity.class));
         }
-//        else {
-//            startActivity(new Intent(MainActivity.this, DashboardActivity.class));
-//        }
+        else {
+            startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+        }
     }
 }

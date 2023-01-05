@@ -10,6 +10,7 @@ import android.view.View;
 import com.example.ecom.databinding.ActivityDashboardBinding;
 import com.example.ecom.databinding.ActivitySignupBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -35,14 +36,31 @@ public class DashboardActivity extends AppCompatActivity {
         binding.cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(DashboardActivity.this, CartActivity.class));
+                if (FirebaseAuth.getInstance().getCurrentUser() == null
+                    //&& FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()
+                )
+                {
+                    startActivity(new Intent(DashboardActivity.this, SignupActivity.class));
+                }
+                else {
+                    startActivity(new Intent(DashboardActivity.this, CartActivity.class));
+                }
             }
         });
 
         binding.profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(DashboardActivity.this, ProfileActivity.class));
+                if (FirebaseAuth.getInstance().getCurrentUser() == null
+                    //&& FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()
+                )
+                {
+                    startActivity(new Intent(DashboardActivity.this, SignupActivity.class));
+                }
+                else {
+                    startActivity(new Intent(DashboardActivity.this, ProfileActivity.class));
+                }
+                //FirebaseAuth.getInstance().signOut();
             }
         });
 

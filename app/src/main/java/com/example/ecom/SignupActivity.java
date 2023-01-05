@@ -22,6 +22,10 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class SignupActivity extends AppCompatActivity {
 
+    boolean validateName = false;
+    boolean validateMail = false;
+    boolean validatePW = false;
+
     ActivitySignupBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +43,35 @@ public class SignupActivity extends AppCompatActivity {
         binding.signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name=binding.name.getText().toString();
-                String email=binding.email.getText().toString();
-                String password=binding.password.getText().toString();
-                createAccount(name, email, password);
+
+                validateMail = binding.email.getText().toString().trim().equalsIgnoreCase("");
+                validatePW = binding.password.getText().toString().trim().equalsIgnoreCase("");
+                validateName = binding.name.getText().toString().trim().equalsIgnoreCase("");
+
+                if (validateMail) {
+                    binding.email.setError("Email cannot be blank");
+                }
+                else {
+                    binding.email.setError(null);
+                }
+                if (validatePW) {
+                    binding.password.setError("Password cannot be blank");
+                }
+                else {
+                    binding.password.setError(null);
+                }
+                if (validateName) {
+                    binding.name.setError("Name cannot be blank");
+                }else {
+                    binding.name.setError(null);
+                }
+
+                //if (!validateMail && !validatePW && !validateName){
+                    String name=binding.name.getText().toString();
+                    String email=binding.email.getText().toString();
+                    String password=binding.password.getText().toString();
+                    createAccount(name, email, password);
+                //}
             }
         });
     }
