@@ -97,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
                 //&& FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()
         )
         {
-            startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+            startActivity(new Intent(MainActivity.this, MainActivity.class));
         }
-        else {
-            startActivity(new Intent(MainActivity.this, DashboardActivity.class));
-        }
+//        else {
+//            startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+//        }
     }
 }

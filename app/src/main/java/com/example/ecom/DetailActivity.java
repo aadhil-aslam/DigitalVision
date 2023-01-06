@@ -54,11 +54,11 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                    if (FirebaseAuth.getInstance().getCurrentUser()==null){
-                        startActivity(new Intent(DetailActivity.this, SignupActivity.class));
-                    } else {
+                    //if (FirebaseAuth.getInstance().getCurrentUser()==null){
+                    //    startActivity(new Intent(DetailActivity.this, SignupActivity.class));
+                    //} else {
                         showBottomSheet(0);
-                    }
+                    //}
                 }
 //                addToCart();
         });
@@ -66,11 +66,11 @@ public class DetailActivity extends AppCompatActivity {
         binding.buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (FirebaseAuth.getInstance().getCurrentUser()==null){
-                    startActivity(new Intent(DetailActivity.this, SignupActivity.class));
-                } else {
+                //if (FirebaseAuth.getInstance().getCurrentUser()==null){
+                //    startActivity(new Intent(DetailActivity.this, SignupActivity.class));
+                //} else {
                     showBottomSheet(1);
-                }
+                //}
             }
         });
     }

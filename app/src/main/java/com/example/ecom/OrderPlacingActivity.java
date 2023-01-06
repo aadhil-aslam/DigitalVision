@@ -22,6 +22,7 @@ public class OrderPlacingActivity extends AppCompatActivity {
     ActivityOrderPlacingBinding binding;
     int mainTotal = 0;
     private String name, number, address, cityName, postalCode, quantities;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

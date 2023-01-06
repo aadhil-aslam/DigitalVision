@@ -36,30 +36,30 @@ public class DashboardActivity extends AppCompatActivity {
         binding.cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (FirebaseAuth.getInstance().getCurrentUser() == null
+                //if (FirebaseAuth.getInstance().getCurrentUser() == null
                     //&& FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()
-                )
-                {
-                    startActivity(new Intent(DashboardActivity.this, SignupActivity.class));
-                }
-                else {
+                //)
+                //{
+                    //startActivity(new Intent(DashboardActivity.this, SignupActivity.class));
+                //}
+                //else {
                     startActivity(new Intent(DashboardActivity.this, CartActivity.class));
-                }
+                //}
             }
         });
 
         binding.profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (FirebaseAuth.getInstance().getCurrentUser() == null
+                //if (FirebaseAuth.getInstance().getCurrentUser() == null
                     //&& FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()
-                )
-                {
-                    startActivity(new Intent(DashboardActivity.this, SignupActivity.class));
-                }
-                else {
+                //)
+                //{
+                 //   startActivity(new Intent(DashboardActivity.this, SignupActivity.class));
+                //}
+                //else {
                     startActivity(new Intent(DashboardActivity.this, ProfileActivity.class));
-                }
+                //}
                 //FirebaseAuth.getInstance().signOut();
             }
         });
